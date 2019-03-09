@@ -1,0 +1,21 @@
+.footer{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #e5e5e5;
+	color: #8d857a;
+	text-align: center;
+	max-height: 5%;
+	font-size: .5em;
+	margin-bottom: 0;
+}
+body{
+	font-family: 'Open Sans Condensed', sans-serif;
+	text-align: center;
+	background-color: #FF5E35;
+	color: #330136;
+}
+h1{
+	font-family: 'Lobster', cursive;
+}

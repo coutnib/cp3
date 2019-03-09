@@ -2,36 +2,67 @@
 <html lang="en">
 
 	<head>
+		<link href="https://fonts.googleapis.com/css?family=Lobster|Open+Sans+Condensed:300" rel="stylesheet">
 		  <meta charset="utf-8" />
 		    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
 		      <link rel="stylesheet" href="/styles.css" />
-		        <title>Vue Todo</title>
+		        <title>Profile Maker</title>
 	</head>
 
 	<body>
-		  <div id="app">
-			      <h1>A List of Things To Do</h1>
-			          <p v-show="activeTodos.length === 0">You are done with all your tasks! Good job!</p>
-				       <form v-on:submit.prevent="addItem">
-					             <input type="text" v-model="message">
-						           <button type="submit">Add</button>
-							       </form>
-							           <div class="controls">
-									         <button v-on:click="showAll()">Show All</button>
-										       <button v-on:click="showActive()">Show Active</button>
-										             <button v-on:click="showCompleted()">Show Completed</button>
-											           <button v-on:click="deleteCompleted()">Delete Completed</button>
-												       </div>
-												           <ul>
-														         <li v-for="item in filteredTodos" draggable="true" v-on:dragstart="dragItem(item)" v-on:dragover.prevent v-on:drop="dropItem(item)">
-																 	<input type="checkbox" v-model="item.completed" />
-																	    <label v-bind:class="{ completed: item.completed }">{{ item.text }}</label>
-																	        <button v-on:click="deleteItem(item)" class="delete">X</button>
-																		      </li>
-																		          </ul>
-																			    </div>
-																			      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
-																			        <script src="/script.js"></script>
+		   <div id="app">
+			       <h1>Who are you?</h1>
+			       
+				<form v-if="noName" v-on:submit.prevent="addName">
+					<p>What's your name?</p>
+					<input type="text" v-model="name">
+					<button type="submit">Enter</button>
+				</form>
+
+				<form v-else-if="noHome" v-on:submit.prevent="addHome">
+					<p>Where are you from?</p>
+					<input type="text" v-model="home">
+					<button type="submit">Enter</button>
+				</form>
+
+				<form v-else-if="noHobbies" v-on:submit.prevent="addHobbies">
+					<p>What is your favorite hobby?</p>
+					<input type="text" v-model="hobbies">
+					<button type="submit">Enter</button>
+				</form>
+
+				<form v-else-if="nnNotAsked" v-on:submit.prevent="haveNicknames">
+				<span>Do you have any nicknames?</span>
+				</br>
+				<button type="submit">Yes</button>
+				<button v-on:click="noNicknames" type="submit">No</button>
+				</form>
+
+				<form v-else-if="yesnn" v-on:submit.prevent="addNicknames">
+					<p>What are your favorite nicknames?</p>
+					<input type="text" v-model="nicknames">
+					<button v-on:click="addNicknames" type="submit">Enter</button>
+				</form>
+
+				<form v-else>
+					<p>Name: {{userName}}</p>
+					<p>Hometown: {{userHome}}</p>
+					<p>Hobbies: {{userHobbies}}</p>
+					<p v-if="userNicknames != ''">Nicknames: {{userNicknames}}</p>
+
+					<button v-on:click="restart" type="submit">Start over</button>
+				</form>
+		</div>
+
+		<div class="footer">
+			<p>
+				<a href="https://github.com/coutnib/cp3.git">GitHub Repository</a>
+			</p>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+		  <script src="/script.js"></script>
 	</body>
 
 </html>
+
